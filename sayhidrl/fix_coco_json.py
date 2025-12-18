@@ -59,7 +59,7 @@ def fix_coco_json(json_path):
 if __name__ == "__main__":
     if len(sys.argv) < 2:
         print("Usage: python fix_coco_json.py <json_file_path>")
-        print("Example: python fix_coco_json.py /workspace/coco_kvasirseg/eval/annotations/val.json")
+        print("Example: python fix_coco_json.py ../coco_kvasirseg/eval/annotations/val.json")
         sys.exit(1)
     
     json_path = sys.argv[1]

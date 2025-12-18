@@ -5,7 +5,7 @@ Extract and display evaluation metrics from inference results.
 Usage:
     python extract_metrics.py \
         --predictions output/kvasirseg_training/inference/coco_instances_results.json \
-        --ground-truth ./coco_kvasirseg/eval/annotations/val.json \
+        --ground-truth ../coco_kvasirseg/eval/annotations/val.json \
         --output-file output/metrics.txt
 """
 
@@ -16,10 +16,9 @@ from pycocotools.coco import COCO
 from pycocotools.cocoeval import COCOeval
 import sys
 
-# Add cutler to path
-cutler_root = "/workspace/fbcutler"
+script_dir = os.path.dirname(os.path.abspath(__file__))
+cutler_root = os.path.join(script_dir, "..", "fbcutler")
 sys.path.insert(0, cutler_root)
-
 
 def evaluate_predictions(pred_file, gt_file, output_file=None):
     """

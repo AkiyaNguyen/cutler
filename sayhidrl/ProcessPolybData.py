@@ -13,11 +13,11 @@ import shutil
 import random
 
 # ---------------- Config ----------------
-DATA_ROOT = "/workspace/kvasirseg/Kvasir-SEG/Kvasir-SEG"
+DATA_ROOT = "../kvasirseg/Kvasir-SEG/Kvasir-SEG"
 IMG_SRC_DIR = os.path.join(DATA_ROOT, "images")
 MASK_SRC_DIR = os.path.join(DATA_ROOT, "masks")
 
-OUTPUT_ROOT = "/workspace/coco_kvasirseg"
+OUTPUT_ROOT = "../coco_kvasirseg"
 TRAIN_RATIO = 0.88
 SEED = 42
 random.seed(SEED)

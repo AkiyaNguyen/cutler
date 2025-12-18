@@ -7,7 +7,7 @@
 
 # Set paths
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-CUTLER_ROOT="/workspace/fbcutler"
+CUTLER_ROOT="../fbcutler"
 
 # Set number of GPUs
 NUM_GPUS=8

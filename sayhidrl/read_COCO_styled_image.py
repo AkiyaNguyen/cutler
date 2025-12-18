@@ -60,8 +60,8 @@ def read_COCO_styled_image(json_path, img_folder_path, output_folder_path, num_i
         print("Saved overlay image to ", output_folder_path + name)
 
 if __name__ == "__main__":
-    json_path = "/workspace/polybOutput/imagenet_train_fixsize480_tau0.15_N3.json"
-    img_folder_path = "/workspace/polybDataset/"
-    output_folder_path = "/workspace/polybOutput/maskcut/"
+    json_path = "../polybOutput/imagenet_train_fixsize480_tau0.15_N3.json"
+    img_folder_path = "../polybDataset/"
+    output_folder_path = "../polybOutput/maskcut/"
     num_images = 5
     read_COCO_styled_image(json_path, img_folder_path, output_folder_path, num_images)

@@ -52,4 +52,16 @@ RUN pip install --no-cache-dir -c constraints.txt \
 RUN pip install --no-cache-dir -c constraints.txt -r requirements.txt
 
 # Default command
-CMD ["/bin/bash"]
+# CMD ["/bin/bash"]
+
+## change to upload to hugging face gpu
+## python train_custom_dataset.py --config-file /workspace/sayhidrl/cascade_mask_rcnn_R_50_FPN_custom.yaml --cpu --eval-only --test-code
+WORKDIR /workspace/sayhidrl/train_eval
+
+CMD [
+  "python",
+  "train_custom_dataset.py",
+  "--config-file",
+  "../cascade_mask_rcnn_R_50_FPN_custom.yaml",
+  "--test-code"
+]

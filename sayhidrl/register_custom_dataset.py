@@ -14,8 +14,8 @@ import importlib.util
 from detectron2.data import MetadataCatalog
 
 # Add the cutler package to path
-# CutLER library is located at /workspace/fbcutler
-cutler_root = "/workspace/fbcutler"
+# CutLER library is located at ../fbcutler
+cutler_root = "../fbcutler"
 sys.path.insert(0, cutler_root)
 
 # Import register_coco_instances directly without triggering cutler/__init__.py
@@ -27,7 +27,7 @@ register_coco_instances = coco_module.register_coco_instances
 
 # Set your dataset root directory
 # You can also use environment variable: DETECTRON2_DATASETS
-DATASET_ROOT = os.path.expanduser("/workspace/coco_kvasirseg")
+DATASET_ROOT = os.path.expanduser("../coco_kvasirseg")
 
 # Example: Register a custom dataset
 # Replace these with your actual paths

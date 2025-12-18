@@ -5,8 +5,8 @@ Visualize model predictions and compare with ground truth annotations.
 Usage:
     python visualize_predictions.py \
         --predictions output/kvasirseg_training/inference/coco_instances_results.json \
-        --ground-truth /workspace/coco_kvasirseg/eval/annotations/val.json \
-        --images /workspace/coco_kvasirseg/eval/images \
+        --ground-truth ../coco_kvasirseg/eval/annotations/val.json \
+        --images ../coco_kvasirseg/eval/images \
         --output-dir output/visualizations \
         --num-images 10
 """
@@ -23,7 +23,7 @@ from matplotlib.patches import Rectangle
 import sys
 
 # Add cutler to path
-cutler_root = "/workspace/fbcutler"
+cutler_root = "../fbcutler"
 sys.path.insert(0, cutler_root)
 
 from detectron2.utils.visualizer import Visualizer, ColorMode

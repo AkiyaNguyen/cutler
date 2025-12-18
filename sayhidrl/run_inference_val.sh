@@ -12,7 +12,7 @@ NUM_TEST_IMAGES=10
 python train_custom_dataset.py \
     --eval-only \
     --cpu \
-    --dataset-root /workspace/coco_kvasirseg \
+    --dataset-root ../coco_kvasirseg \
     --val-images eval/images \
     --val-json eval/annotations/val.json \
     --config-file cascade_mask_rcnn_R_50_FPN_custom.yaml \
