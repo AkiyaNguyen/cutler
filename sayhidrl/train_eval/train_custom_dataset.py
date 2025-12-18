@@ -114,6 +114,7 @@ def main(args):
     
 
 if __name__ == "__main__":
+    
     parser = argparse.ArgumentParser(
         description="Train CutLER on custom dataset",
         parents=[default_argument_parser()],

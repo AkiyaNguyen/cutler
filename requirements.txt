@@ -11,3 +11,4 @@ pyyaml==6.0
 colored
 fvcore==0.1.5.post20220512
 gdown==4.5.4
+huggingface_hub>=0.20.0
