@@ -24,8 +24,9 @@ import sys
 import importlib.util
 
 # Add the cutler package to path
-# CutLER library is located at /workspace/fbcutler
-cutler_root = "/workspace/fbcutler"
+# CutLER library is located relative to this script (../fbcutler)
+script_dir = os.path.dirname(os.path.abspath(__file__))
+cutler_root = os.path.join(script_dir, "..", "fbcutler")
 sys.path.insert(0, cutler_root)
 
 from detectron2.data import MetadataCatalog

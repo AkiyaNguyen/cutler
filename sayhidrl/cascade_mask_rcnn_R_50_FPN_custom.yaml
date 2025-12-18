@@ -1,4 +1,4 @@
-_BASE_: "/workspace/fbcutler/cutler/model_zoo/configs/Base-RCNN-FPN.yaml"
+_BASE_: "../fbcutler/cutler/model_zoo/configs/Base-RCNN-FPN.yaml"
 DATALOADER:
   COPY_PASTE: True
   COPY_PASTE_RATE: 1.0
@@ -60,5 +60,5 @@ TEST:
     ENABLED: True
     NUM_ITER: 200
   DETECTIONS_PER_IMAGE: 100
-OUTPUT_DIR: "/workspace/sayhidrl/output/kvasirseg_training/"
+OUTPUT_DIR: "/output/kvasirseg_training/"
 
