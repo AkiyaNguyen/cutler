@@ -9,7 +9,7 @@ This directory contains custom training scripts for CutLER, separated from the m
 ├── fbcutler/              # CutLER library (do not modify)
 │   └── cutler/
 │       └── ...
-└── sayhidrl-training/     # Your custom training code (this directory)
+└── sayhidrl/     # Your custom training code (this directory)
     ├── register_custom_dataset.py
     ├── train_custom_dataset.py
     ├── cascade_mask_rcnn_R_50_FPN_custom.yaml
@@ -25,7 +25,7 @@ The training scripts automatically reference the CutLER library located at `/wor
 ### 1. Register Your Dataset
 
 ```bash
-cd /workspace/sayhidrl-training
+cd /workspace/sayhidrl
 python register_custom_dataset.py
 ```
 

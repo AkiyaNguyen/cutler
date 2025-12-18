@@ -60,5 +60,5 @@ TEST:
     ENABLED: True
     NUM_ITER: 200
   DETECTIONS_PER_IMAGE: 100
-OUTPUT_DIR: "/workspace/sayhidrl-training/output/kvasirseg_training/"
+OUTPUT_DIR: "/workspace/sayhidrl/output/kvasirseg_training/"
 
