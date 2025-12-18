@@ -1,0 +1,57 @@
+{
+  // Tên hiển thị của môi trường container trong VS Code
+  "name": "CutLER Dev Environment (PyTorch & Detectron2)",
+
+  // Khối 'build' chỉ định cách tạo container từ Dockerfile
+  "build": {
+    // Chỉ ra tệp Dockerfile cần sử dụng.
+    // ".." vì Dockerfile nằm ở thư mục gốc (một cấp cao hơn .devcontainer)
+    "dockerfile": "../Dockerfile", 
+    "context": ".."
+  },
+
+  // Thiết lập thư mục làm việc mặc định bên trong container
+  // Phải khớp với WORKDIR trong Dockerfile của bạn (là /workspace)
+  "workspaceFolder": "/workspace",
+
+  // Cấu hình các đối số chạy Docker (runArgs)
+  // Nếu máy chủ có GPU, người dùng sẽ tự bật tính năng này
+  "runArgs": [
+    // Mặc định CHỈ chạy bằng CPU để đảm bảo container khởi động trên mọi máy
+    // Người dùng cần thêm "--gpus", "all" vào setting cục bộ nếu có GPU
+    "--rm"
+  ],
+
+  // Cấu hình Volume Mapping
+  "mounts": [
+    // Ánh xạ thư mục mã nguồn hiện tại của máy chủ vào /workspace bên trong container.
+    // Điều này thay thế lệnh COPY . . và cho phép chỉnh sửa trực tiếp.
+    "source=${localWorkspaceFolder},target=/workspace,type=bind"
+  ],
+  
+  // Thiết lập quyền cho người dùng bên trong container (tùy chọn)
+  // Đảm bảo các tệp được tạo bởi người dùng hiện tại có thể được truy cập
+  "remoteUser": "root", 
+
+  // Các tùy chỉnh cho VS Code sau khi attach vào container
+  "customizations": {
+    "vscode": {
+      // Thiết lập ngôn ngữ mặc định là Python
+      "settings": {
+        "python.defaultInterpreterPath": "/usr/local/bin/python",
+        "files.associations": {
+          "*.json": "jsonc"
+        }
+      },
+      // Các extension cần thiết tự động cài đặt trong container
+      "extensions": [
+        "ms-python.python",        // Python core
+        "ms-toolsai.jupyter",      // Hỗ trợ Jupyter Notebook
+        "ms-vscode.cpptools"       // Hỗ trợ C/C++ (cần cho biên dịch Detectron2)
+      ]
+    }
+  },
+
+  // Lệnh chạy sau khi container được tạo xong (ví dụ: kiểm tra môi trường)
+  "postCreateCommand": "python -c 'import torch; print(\"PyTorch version:\", torch.__version__); print(\"CUDA available:\", torch.cuda.is_available())'"
+}
