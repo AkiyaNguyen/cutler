@@ -8,3 +8,6 @@ your_dataset/
 └── annotations/
     └── train.json
 ```
+
+
+python train_custom_dataset.py --config-file ../config.yaml --cpu --eval-only --output-dir FinalLocalEval/ MODEL.WEIGHTS model_final.pth 

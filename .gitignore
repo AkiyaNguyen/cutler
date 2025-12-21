@@ -9,3 +9,6 @@ ReadingNote.md
 
 fbcutler/videocutler/
 
+**/*.pth
+
+sayhidrl/**/evaluation/

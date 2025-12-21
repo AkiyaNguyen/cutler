@@ -175,7 +175,7 @@ python train_net.py --num-gpus 8 \
 Secondly, we can run the following command to generate the json file for the first round of self-training:
 ```
 python tools/get_self_training_ann.py \
-  --new-pred output/inference/coco_instances_results.json \ # load model predictions
+  --new-pred output/coco_instances_results.json \ # load model predictions
   --prev-ann DETECTRON2_DATASETS/imagenet/annotations/imagenet_train_fixsize480_tau0.15_N3.json \ # path to the old annotation file.
   --save-path DETECTRON2_DATASETS/imagenet/annotations/cutler_imagenet1k_train_r1.json \ # path to save a new annotation file.
   --threshold 0.7

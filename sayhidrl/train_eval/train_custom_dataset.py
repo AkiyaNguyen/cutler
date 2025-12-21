@@ -14,8 +14,7 @@ from detectron2.engine import launch
 
 from data.datasets import register_coco_instances #type: ignore
 from train_net import Trainer, setup, default_argument_parser #type: ignore
-from util import log_util
-from util import extract_first_images
+from helper_func import extract_first_images
 def register_dataset(dataset_name, images_path, json_path, metadata=None):
     if metadata is None:
         metadata = {}
@@ -66,7 +65,7 @@ def main(args):
     args.test_dataset = val_dataset_name
 
     if args.test_code:
-        test_number = 10
+        test_number = args.num_test_images
         train_dataset_name = extract_first_images(train_dataset_name, test_number)
         val_dataset_name = extract_first_images(val_dataset_name, test_number)
         args.train_dataset = train_dataset_name
@@ -98,14 +97,13 @@ def main(args):
             args.opts.extend(['MODEL.DEVICE', 'cpu'])
 
     cfg = setup(args)
-    if args.eval_only:
+    if args.eval_only:  
         from detectron2.checkpoint import DetectionCheckpointer
         model = Trainer.build_model(cfg)
         DetectionCheckpointer(model, save_dir=cfg.OUTPUT_DIR).resume_or_load(
             cfg.MODEL.WEIGHTS, resume=args.resume
         )
         res = Trainer.test(cfg, model)
-        log_util(res, os.path.join(cfg.OUTPUT_DIR, "metrics.txt"))
         return res;
 
     trainer = Trainer(cfg)
@@ -128,7 +126,7 @@ if __name__ == "__main__":
     parser.add_argument("--output-dir", type=str, default="../output/my_training") ## relative to this script
     parser.add_argument("--cpu", action="store_true")
     parser.add_argument("--test-code", action='store_true')
-
+    parser.add_argument("--num-test-images", type=int, default=10)
     
     args = parser.parse_args()
     print("=" * 60)

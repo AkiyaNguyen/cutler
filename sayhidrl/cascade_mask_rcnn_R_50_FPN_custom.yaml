@@ -1,6 +1,6 @@
 _BASE_: "../fbcutler/cutler/model_zoo/configs/Base-RCNN-FPN.yaml"
 DATALOADER:
-  COPY_PASTE: True
+  COPY_PASTE: False
   COPY_PASTE_RATE: 1.0
   VISUALIZE_COPY_PASTE: False
   COPY_PASTE_RANDOM_NUM: True
@@ -16,10 +16,10 @@ MODEL:
     FREEZE_AT: 0
   RESNETS:
     DEPTH: 50
-    NORM: "SyncBN"
+    NORM: "BN"
     STRIDE_IN_1X1: False
   FPN:
-    NORM: "SyncBN"
+    NORM: "BN"
   ROI_BOX_HEAD:
     CLS_AGNOSTIC_BBOX_REG: True
   ROI_HEADS:
@@ -29,6 +29,7 @@ MODEL:
     POSITIVE_FRACTION: 0.25
     USE_DROPLOSS: False  # Set to False for fine-tuning on new datasets
     DROPLOSS_IOU_THRESH: 0.01
+    BATCH_SIZE_PER_IMAGE: 128
   RPN:
     POST_NMS_TOPK_TRAIN: 2000  # Reduced from 4000 for faster training
     NMS_THRESH: 0.7
@@ -37,12 +38,14 @@ DATASETS:
   TEST: ("kvasirseg_val",)     # Replace with your validation dataset name
 
 SOLVER:
-  IMS_PER_BATCH: 16
-  BASE_LR: 0.005  # Lower learning rate for fine-tuning
+  IMS_PER_BATCH: 4
+  BASE_LR: 0.001  # Lower learning rate for fine-tuning
   WEIGHT_DECAY: 0.00005
-  STEPS: (600, 800)  # Learning rate decay steps for 10 epochs
-  MAX_ITER: 1000  # 10 epochs (assuming ~1600 images: 1600/16*10 = 1000 iterations)
-  GAMMA: 0.1  # Learning rate decay factor
+  STEPS: (3500, 4500)  # Learning rate decay steps for 10 epochs
+  MAX_ITER: 5000  ## 880 images, batch 4, 5000 iterations = 5000 / (880:4) \sim 20 epochs
+  GAMMA: 0.1  # Learning rate decay 
+  WARMUP_ITERS: 500 ## 1/10 total 
+  WARMUP_FACTOR: 0.001
   CLIP_GRADIENTS:
     CLIP_TYPE: norm
     CLIP_VALUE: 1.0
@@ -60,5 +63,5 @@ TEST:
     ENABLED: True
     NUM_ITER: 200
   DETECTIONS_PER_IMAGE: 100
-OUTPUT_DIR: "/output/kvasirseg_training/"
+OUTPUT_DIR: "/evaluation/kvasirseg/"
 
