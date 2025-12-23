@@ -44,7 +44,7 @@ SOLVER:
   STEPS: (3500, 4500)  # Learning rate decay steps for 10 epochs
   MAX_ITER: 5000  ## 880 images, batch 4, 5000 iterations = 5000 / (880:4) \sim 20 epochs
   GAMMA: 0.1  # Learning rate decay 
-  WARMUP_ITERS: 500 ## 1/10 total 
+  WARMUP_ITERS: 500 ## 1/ 10 total 
   WARMUP_FACTOR: 0.001
   CLIP_GRADIENTS:
     CLIP_TYPE: norm

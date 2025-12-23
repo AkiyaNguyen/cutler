@@ -5,7 +5,8 @@ python read_predictions.py --coco_instance_result_file ...
                             --image_path ...
                             --annotation_file ...
                             --output_dir ...
-                            
+Running this script to analyze the result of model predictions displayed in coco format.
+This would plot pr_curve, plot the predictions and the ground truth and compute the ap scores.
 """
 import json
 import os
@@ -59,6 +60,9 @@ def plot_gt_and_predictions(img, gt, predList, image_path, output_dir, threshold
     axes[1].axis('off')
     
     # Panel 3: Predictions (red), only show predictions with score >= threshold
+    max_score = np.max([pred['score'] for pred in predList])
+    if threshold > max_score:
+        threshold = max_score - 1e-6
     predList = [pred for pred in predList if pred['score'] >= threshold]
     pred_img = draw_annotations_on_image(original_img, predList, color=(255, 0, 0), show_scores=True)
     axes[2].imshow(pred_img)
